@@ -11,6 +11,24 @@
     "128": "assets/icon_128.png",
     "256": "assets/icon_256.png"
   },
+  
+  "offline_enabled": true,
+  
+ "permissions": [
+    "storage",
+    "clipboardWrite",
+    {"fileSystem": ["write", "retainEntries", "directory"]},
+    "http://*/*",
+    "https://*/*",
+    "<all_urls>"
+  ],
+  
+  "file_handlers": {
+    "text": {
+      "types": ["text/*"],
+      "extensions": ["md","txt","readme"]
+    }
+  },
 
   "app": {
     "background": {

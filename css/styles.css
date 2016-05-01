@@ -1,3 +1,7 @@
+html, body {
+  background-color: #263238;
+}
+
 .demo-content .editor-toolbar {
   width: 100%;
   border: none;
@@ -10,7 +14,7 @@
   border: none;
   background-color: #263238;
   border-radius: 0;
-  height: calc(100vh - 102px);
+  height: calc(100vh - 50px);
   color: #ccc;
 }
 
@@ -44,6 +48,36 @@
   background: none;
 }
 
-.demo-content .editor-preview-side {
-  /*display: block;*/
+.demo-content {
+  font-family: 'Roboto', sans-serif;
+}
+
+.demo-content .editor-preview, .editor-preview-side {
+  padding: 10px 5%;
+}
+
+.demo-content a {
+  color: #3f51b5;
+  font-weight: 500;
+}
+
+.demo-content .CodeMirror .CodeMirror-code .cm-comment {
+  color: #8CA96F;
+}
+
+.demo-content span.cm-quote.cm-quote-1 {
+  color: #9E4456;
+}
+
+.demo-content .CodeMirror .CodeMirror-code .cm-link {
+  color: #609593;
+}
+
+#more_vert:hover {
+  color: #263238;
+  background-color: #263238;
+}
+
+#demo-menu-lower-right {
+  float: right;
 }

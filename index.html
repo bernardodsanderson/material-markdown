@@ -2,54 +2,47 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Material Markdown</title>
 
     <style>
       @font-face {
         font-family: 'Roboto';
-        src: url(../fonts/Roboto-Regular.ttf);
+        src: url(/fonts/Roboto-Regular.ttf);
       }
       
       @font-face {
         font-family: 'Material Icons';
-        src: url(../fonts/MaterialIcons-Regular.ttf);
+        src: url(/fonts/MaterialIcons-Regular.ttf);
       }
       @font-face {
         font-family: 'FontAwesome';
-        src: url(../fonts/fontawesome-webfont.ttf);
+        src: url(/fonts/fontawesome-webfont.ttf);
       }
     </style>
 
-    <link rel="stylesheet" href="../css/material.min.css">
-    <link rel="stylesheet" href="../css/font-awesome.min.css">
-    <link rel="stylesheet" href="../css/simplemde.min.css">
-    <link rel="stylesheet" href="../css/styles.css">
-    <style>
-    #view-source {
-      position: fixed;
-      display: block;
-      right: 0;
-      bottom: 0;
-      margin-right: 40px;
-      margin-bottom: 40px;
-      z-index: 900;
-    }
-    </style>
+    <link rel="stylesheet" href="/css/material.min.css">
+    <link rel="stylesheet" href="/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/css/simplemde.min.css">
+    <link rel="stylesheet" href="/css/styles.css">
   </head>
   <body>
             
     <!--Main content div-->
     <div class="demo-content">
       <textarea id="my-content"></textarea>
-    </div>
       
+      <ul class="mdl-menu mdl-menu--bottom-right mdl-js-menu mdl-js-ripple-effect" for="demo-menu-lower-right">
+        <li class="mdl-menu__item" id="open_file">Open File</li>
+        <li class="mdl-menu__item" id="save">Save</li>
+        <li class="mdl-menu__item" id="save_as">Save As</li>
+      </ul>
+      
+    </div>
+    
     <!--Javascript Calls-->
-    <!--<script src="../js/jquery-1.12.3.min.js"></script>-->
-    <!--<script src="../js/jquery.hideseek.min.js"></script>-->
-    <script src="../js/simplemde.min.js"></script>
-    <script src="../js/material.min.js"></script>
-    <script src="../main.js"></script>
+    <script src="/js/cash.min.js"></script>
+    <script src="/js/simplemde.min.js"></script>
+    <script src="/js/material.min.js"></script>
+    <script src="/main.js"></script>
   </body>
 </html>
