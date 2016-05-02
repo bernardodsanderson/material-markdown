@@ -73,6 +73,15 @@ html, body {
   color: #609593;
 }
 
+.demo-content .editor-preview-side {
+  width: 48%;
+}
+
+.demo-content blockquote:after {
+  float: right;
+  margin-top: -40px;
+}
+
 #more_vert:hover {
   color: #263238;
   background-color: #263238;
@@ -80,4 +89,28 @@ html, body {
 
 #demo-menu-lower-right {
   float: right;
+}
+
+
+/* Let's get this party started */
+::-webkit-scrollbar { 
+    width: 8px;
+}
+ 
+/* Track */
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3); 
+    -webkit-border-radius: 10px;
+    border-radius: 2px;
+}
+ 
+/* Handle */
+::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 2px;
+    border-radius: 10px;
+    background: #222D32; 
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.5); 
+}
+::-webkit-scrollbar-thumb:window-inactive {
+	background: #222D32; 
 }

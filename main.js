@@ -15,7 +15,7 @@ $('<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button
 
 $('.mdl-menu li').on('click', function(){
   switch($(this)[0]) {
-    case $('#open_file')[0]:
+    case $('#open_file')[0]: // OPEN FILE
         console.log('works', $(this));
         var accepts = [{
           mimeTypes: ['markdown/*'],
@@ -37,8 +37,7 @@ $('.mdl-menu li').on('click', function(){
             });
         	});
         break;
-    case $('#save')[0]:
-        console.log('works', $(this));
+    case $('#save')[0]: // SAVE FILE
         chrome.fileSystem.getWritableEntry(chosenFileEntry, function(writableFileEntry) {
           writableFileEntry.createWriter(function(writer) {
             writer.onerror = errorHandler;
@@ -49,15 +48,14 @@ $('.mdl-menu li').on('click', function(){
           }, errorHandler);
         });
         break;
-    case $('#save_as')[0]:
-        chrome.fileSystem.chooseEntry({type: 'saveFile'}, function(writableFileEntry) {
-          writableFileEntry.createWriter(function(writer) {
-            writer.onerror = errorHandler;
-            writer.onwriteend = function(e) {
-              console.log('write complete');
-            };
-            writer.write(new Blob(['1234567890'], {type: 'text/plain'}));
-          }, errorHandler);
+    case $('#save_as')[0]: // SAVE AS FILE
+        var config = {type: 'saveFile', suggestedName: 'my-file.md'};
+        chrome.fileSystem.chooseEntry(config, function(writableEntry) {
+          console.log(simplemde.value(), 'simplemde.value');
+          var blob = new Blob([simplemde.value()], {type: 'text/plain'});
+          writeFileEntry(writableEntry, blob, function(e) {
+            console.log('Write complete :)');
+          });
         });
         break;
     default:

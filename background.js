@@ -9,9 +9,13 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
     'index.html', {
       id: 'mainWindow',
       frame: { color: "#1F292E" },
-      bounds: {width: 900, height: 700},
+      bounds: {width: 1000, height: 700},
       minHeight: 700,
-      minWidth: 900
+      minWidth: 1000
     }
   );
+});
+
+chrome.commands.onCommand.addListener(function(toggleOpenFile) {
+  console.log('Command:', toggleOpenFile);
 });

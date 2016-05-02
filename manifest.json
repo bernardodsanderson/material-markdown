@@ -14,6 +14,30 @@
   
   "offline_enabled": true,
   
+  "commands": {
+    "toggle-open-file": {
+      "suggested_key": {
+        "default": "Ctrl+O",
+        "mac": "Command+O"
+      },
+      "description": "Open File"
+    },
+    "toggleSaveFile": {
+      "suggested_key": {
+        "default": "Ctrl+S",
+        "mac": "Command+S"
+      },
+      "description": "Save File"
+    },
+    "toggleSaveAsFile": {
+      "suggested_key": {
+        "default": "Ctrl+Shift+S", 
+        "mac": "Command+Shift+S"
+      },
+      "description": "Save As File"
+    }
+  },
+  
  "permissions": [
     "storage",
     "clipboardWrite",
