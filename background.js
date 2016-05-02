@@ -15,7 +15,3 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
     }
   );
 });
-
-chrome.commands.onCommand.addListener(function(toggleOpenFile) {
-  console.log('Command:', toggleOpenFile);
-});

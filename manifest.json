@@ -22,17 +22,17 @@
       },
       "description": "Open File"
     },
-    "toggleSaveFile": {
+    "toggle-save-file": {
       "suggested_key": {
-        "default": "Ctrl+S",
-        "mac": "Command+S"
+        "default": "Ctrl+A",
+        "mac": "Command+A"
       },
       "description": "Save File"
     },
-    "toggleSaveAsFile": {
+    "toggle-save-as-file": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S", 
-        "mac": "Command+Shift+S"
+        "default": "Ctrl+Shift+A", 
+        "mac": "Command+Shift+A"
       },
       "description": "Save As File"
     }
