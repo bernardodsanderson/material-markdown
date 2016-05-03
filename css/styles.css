@@ -59,11 +59,13 @@ html, body {
 .demo-content a {
   color: #578685;
   font-weight: 800;
+  text-decoration: none;
 }
 
-.demo-content a {
+.demo-content a:hover {
   color: #578685;
   font-weight: 800;
+  text-decoration: underline;
 }
 
 .demo-content .CodeMirror .CodeMirror-code .cm-comment {
@@ -89,11 +91,21 @@ html, body {
 
 .editor-preview-side blockquote p {
   padding-left: 7px;
+  color: #777;
+  border-left: 2px solid #777;
+}
+
+.editor-preview-side blockquote:before, .editor-preview-side blockquote:after {
+  display: none;
 }
 
 .editor-preview-side pre {
   padding: 5px;
   border-radius: 4px;
+}
+
+.editor-preview-side blockquote {
+  margin: 15px;
 }
 
 .demo-content .cm-header, .demo-content .cm-strong {
