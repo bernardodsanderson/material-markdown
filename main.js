@@ -2,7 +2,7 @@ var simplemde = new SimpleMDE({
   element: document.getElementById("my-content"),
   spellChecker: false,
   toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link", "image", "horizontal-rule", "|", "side-by-side"],
-  initialValue: "Hello from Material Markdown!",
+  initialValue: "### Welcome to Material Markdown!\n**Shortcuts**\n- Open File: Ctrl+Shift+P\n- Save File: Ctrl+Shift+A\n- Save As File: Ctrl+Shift+S\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor",
   status: false
 });
 
@@ -28,7 +28,6 @@ $('.mdl-menu li').on('click', function(){
         console.log('Nothing selected');
   }
 });
-
 
 
 // File functions
@@ -90,4 +89,10 @@ chrome.commands.onCommand.addListener(function(command) {
   } else if(command == 'toggle-save-as-file') {
     saveAsFile();
   }
+});
+
+
+// Add target _blank to link
+$(document).ready(function(){
+  $('.editor-preview-side a').attr('target', '_blank');
 });

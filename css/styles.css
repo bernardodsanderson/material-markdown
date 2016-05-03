@@ -82,6 +82,19 @@ html, body {
   margin-top: -40px;
 }
 
+.editor-preview-side blockquote p {
+  padding-left: 7px;
+}
+
+.editor-preview-side pre {
+  padding: 5px;
+  border-radius: 4px;
+}
+
+.demo-content .cm-header, .demo-content .cm-strong {
+  font-weight: 400;
+}
+
 #more_vert:hover {
   color: #263238;
   background-color: #263238;

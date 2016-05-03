@@ -8384,7 +8384,7 @@
                             }
                             if (0 === r.indexOf("javascript:") || 0 === r.indexOf("vbscript:")) return ""
                         }
-                        var o = '<a href="' + e + '"';
+                        var o = '<a href="' + e + '" target="_blank"';
                         return t && (o += ' title="' + t + '"'), o += ">" + n + "</a>"
                     }, o.prototype.image = function(e, t, n) {
                         var r = '<img src="' + e + '" alt="' + n + '"';

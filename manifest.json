@@ -17,22 +17,22 @@
   "commands": {
     "toggle-open-file": {
       "suggested_key": {
-        "default": "Ctrl+O",
-        "mac": "Command+O"
+        "default": "Ctrl+Shift+P",
+        "mac": "Command+Shift+P"
       },
       "description": "Open File"
     },
     "toggle-save-file": {
       "suggested_key": {
-        "default": "Ctrl+A",
-        "mac": "Command+A"
+        "default": "Ctrl+Shift+A",
+        "mac": "Command+Shift+A"
       },
       "description": "Save File"
     },
     "toggle-save-as-file": {
       "suggested_key": {
-        "default": "Ctrl+Shift+A", 
-        "mac": "Command+Shift+A"
+        "default": "Ctrl+Shift+S", 
+        "mac": "Command+Shift+S"
       },
       "description": "Save As File"
     }
