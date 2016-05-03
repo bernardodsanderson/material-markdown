@@ -41,10 +41,7 @@
  "permissions": [
     "storage",
     "clipboardWrite",
-    {"fileSystem": ["write", "retainEntries", "directory"]},
-    "http://*/*",
-    "https://*/*",
-    "<all_urls>"
+    {"fileSystem": ["write", "retainEntries", "directory"]}
   ],
   
   "file_handlers": {
