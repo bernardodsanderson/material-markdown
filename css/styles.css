@@ -89,6 +89,15 @@ html, body {
   margin-top: -40px;
 }
 
+.demo-content .mdl-snackbar {
+  background-color: #FFCC03;
+  left: 35%;
+}
+
+.demo-content .mdl-snackbar__action, .demo-content .mdl-snackbar__text {
+  color: #1F292E;
+}
+
 .editor-preview-side blockquote p {
   padding-left: 7px;
   color: #777;

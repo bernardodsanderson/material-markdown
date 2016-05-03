@@ -17,24 +17,31 @@
   "commands": {
     "toggle-open-file": {
       "suggested_key": {
-        "default": "Ctrl+Shift+P",
-        "mac": "Command+Shift+P"
+        "default": "Ctrl+5",
+        "mac": "Command+5"
       },
       "description": "Open File"
     },
     "toggle-save-file": {
       "suggested_key": {
-        "default": "Ctrl+Shift+A",
-        "mac": "Command+Shift+A"
+        "default": "Ctrl+2",
+        "mac": "Command+2"
       },
       "description": "Save File"
     },
     "toggle-save-as-file": {
       "suggested_key": {
-        "default": "Ctrl+Shift+S", 
-        "mac": "Command+Shift+S"
+        "default": "Ctrl+3", 
+        "mac": "Command+3"
       },
       "description": "Save As File"
+    },
+    "toggle-open-sample": {
+      "suggested_key": {
+        "default": "Ctrl+4", 
+        "mac": "Command+4"
+      },
+      "description": "Open Sample Page"
     }
   },
   
