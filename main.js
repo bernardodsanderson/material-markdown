@@ -93,7 +93,6 @@ function saveFile() {
       }
       setEntry(entry, true);
       saveToEntry();
-      activateToast();
     });
   } else {
     saveAsFile();
@@ -109,9 +108,9 @@ function saveToEntry() {
 
     var blob = new Blob([simplemde.value()], {type: 'text/plain'});
     fileWriter.write(blob);
+    activateToast();
   });
 }
-
 
 // Commmands
 chrome.commands.onCommand.addListener(function(command) {
