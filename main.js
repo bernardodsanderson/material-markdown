@@ -89,6 +89,7 @@ function replaceDocContentsFromFileEntry() {
 function saveAsFile() {
   var config = {type: 'saveFile', suggestedName: 'my-file.md'};
   chrome.fileSystem.chooseEntry(config, function(writableFileEntry) {
+    setEntry(writableFileEntry, true);
     writableFileEntry.createWriter(function(writer) {
       writer.write(new Blob([simplemde.value()], {type: 'text/plain'}));  
       activateToast();

@@ -121,6 +121,14 @@ html, body {
   font-weight: 400;
 }
 
+.demo-content span.cm-strong {
+  color: #EDBE66;
+}
+
+.demo-contnet span.cm-em {
+  color: #C390E6;
+}
+
 .editor-preview-side div.image {
   background-color: #263238;
   min-height: 200px;
