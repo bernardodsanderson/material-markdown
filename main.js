@@ -19,6 +19,11 @@ function loadSample() {
   simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+Shift+4\n - Mac: Cmd+4\n- Open File: Ctrl+Shift+5\n	- Mac: Cmd+5\n- Save File: Ctrl+Shift+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+Shift+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
 }
 
+function getSavedValue() {
+  chrome.storage.sync.get(function(values){simplemde.value(values.value);});
+}
+
+getSavedValue();
 
 $('.mdl-menu li').on('click', function(){
   switch($(this)[0]) {
@@ -151,3 +156,17 @@ function activateToast() {
   var data = {message: 'File Saved!'};
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
+
+simplemde.codemirror.on("change", function(){
+  saveChanges();
+});
+
+function saveChanges() {
+  var theValue = simplemde.value();
+  // Save it using the Chrome extension storage API.
+  chrome.storage.sync.set({'value': theValue}, function() {
+    // Notify that we saved.
+    console.log('Editor saved');
+  });
+}
+      

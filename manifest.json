@@ -3,7 +3,7 @@
   "name": "Material Markdown",
   "short_name": "Material Markdown",
   "description": "A simple and clean Material Design markdown editor with side by side preview",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "minimum_chrome_version": "38",
 
   "icons": {
