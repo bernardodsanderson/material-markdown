@@ -14,6 +14,12 @@ simplemde.toggleSideBySide();
 // Menu
 $('<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons" style="color: white;">more_vert</i></button>').appendTo('.editor-toolbar');
 
+// Load Sample
+function loadSample() {
+  simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+Shift+4\n - Mac: Cmd+4\n- Open File: Ctrl+Shift+5\n	- Mac: Cmd+5\n- Save File: Ctrl+Shift+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+Shift+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
+}
+
+
 $('.mdl-menu li').on('click', function(){
   switch($(this)[0]) {
     case $('#open_file')[0]: // OPEN FILE
@@ -36,26 +42,44 @@ $('.mdl-menu li').on('click', function(){
 var chosenFileEntry = null;
 
 // File functions
-function openFile(){
-  var accepts = [{
-    mimeTypes: ['markdown/*'],
-    extensions: ['md', 'txt']
-  }];
-  chrome.fileSystem.chooseEntry({type: 'openFile', accepts: accepts}, function(readOnlyEntry) {
-    if (!readOnlyEntry) {
-      console.log('No file selected.');
+// function openFile(){
+//   var accepts = [{
+//     mimeTypes: ['markdown/*'],
+//     extensions: ['md', 'txt']
+//   }];
+//   chrome.fileSystem.chooseEntry({type: 'openFile', accepts: accepts}, function(readOnlyEntry) {
+//     setEntry(readOnlyEntry, false);
+//     readOnlyEntry.file(function(file) {
+//       var reader = new FileReader();
+//       reader.onloadend = function(e) {
+//         simplemde.value(e.target.result);
+//       };
+//       reader.readAsText(file);
+//     });
+//   });
+// }
+
+function openFile() {
+  chrome.fileSystem.chooseEntry(function (entry) {
+    if (chrome.runtime.lastError) {
+      showError(chrome.runtime.lastError.message);
       return;
     }
-    setEntry(readOnlyEntry, false);
-    chosenFileEntry = chrome.fileSystem.retainEntry(readOnlyEntry);
-    readOnlyEntry.file(function(file) {
-      var reader = new FileReader();
-      reader.onloadend = function(e) {
-        simplemde.value(String(e.target.result));
-      };
-      reader.readAsText(file);
-    });
+    setEntry(entry, false);
+    replaceDocContentsFromFileEntry();
   });
+}
+
+function replaceDocContentsFromFile(file) {
+  var reader = new FileReader();
+  reader.onload = function() {
+    simplemde.value(reader.result);
+  };
+  reader.readAsText(file);
+}
+
+function replaceDocContentsFromFileEntry() {
+  fileEntry.file(replaceDocContentsFromFile);
 }
 
 function saveAsFile() {
@@ -67,11 +91,6 @@ function saveAsFile() {
     });
   });
 }
-
-function loadSample() {
-  simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+4\n - Mac: Cmd+4\n- Open File: Ctrl+5\n	- Mac: Cmd+5\n- Save File: Ctrl+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
-}
-
 
 // From Code Editor sample
 var fileEntry;
@@ -101,11 +120,6 @@ function saveFile() {
 
 function saveToEntry() {
   fileEntry.createWriter(function(fileWriter) {
-    fileWriter.onwriteend = function(e) {
-      if (this.error)
-        gStatusEl.innerHTML = 'Error during write: ' + this.error.toString();
-    };
-
     var blob = new Blob([simplemde.value()], {type: 'text/plain'});
     fileWriter.write(blob);
     activateToast();
@@ -132,8 +146,3 @@ function activateToast() {
   var data = {message: 'File Saved!'};
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
-
-// Add target _blank to link
-$(document).ready(function(){
-  $('.editor-preview-side a').attr('target', '_blank');
-});
