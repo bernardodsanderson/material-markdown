@@ -40,8 +40,3 @@ Material Markdown is a simple and clean markdown editor with side by side previe
 
 
 > This app uses the open source SimpleMDE markdown editor
-itor----
-
-
-[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)
-> This app uses the open source SimpleMDE markdown editor
