@@ -1,11 +1,13 @@
-### Welcome to Material Markdown!
+## Welcome to Material Markdown!
 **A simple and clean Material Design markdown editor with side by side preview**
 
-Material Markdown is a simple and clean Material Design markdown editor with side by side preview. This is for people who would like to actually see the code and be able to preview it too!
+![screenshot](https://lh3.googleusercontent.com/bV6rFmBb9_-jiFztObWHyMg4Wijm8sgNqbIOMCqltWguhhsfnTUyvl2uYToe-1HxDYQFnEezFJQ=s1280-h800-e365-rw)
+
+Material Markdown is a simple and clean markdown editor with side by side preview. This is for people who would like to actually see the code and be able to preview it too!
 
 **Features**
 - Clean and simple Design
-- Side-by-side preview
+- Side-by-side preview with toggle
 - Formatting
 - File options
   - Open
@@ -37,11 +39,8 @@ Material Markdown is a simple and clean Material Design markdown editor with sid
 - Toggle Unordered List: Ctrl+L
 
 
------
-```
-var test = 'hello from material markdown'
-```
------
+> This app uses the open source SimpleMDE markdown editor
+itor----
 
 
 [Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)
