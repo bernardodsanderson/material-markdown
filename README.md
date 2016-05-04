@@ -17,5 +17,5 @@
 ```
 var test = 'hello from material markdown'
 ```
-[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)ory](https://gitlab.com/bernardodsanderson/material-markdown)
-> This app uses the open source SimpleMDE markdown editorifferent test
+[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)
+> This app uses the open source SimpleMDE markdown editorifferent testp uses the open source SimpleMDE markdown editorifferent test
