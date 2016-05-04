@@ -60,7 +60,11 @@ var chosenFileEntry = null;
 // }
 
 function openFile() {
-  chrome.fileSystem.chooseEntry(function (entry) {
+  var accepts = [{
+    mimeTypes: ['markdown/*'],
+    extensions: ['md', 'txt']
+  }];
+  chrome.fileSystem.chooseEntry({accepts: accepts}, function (entry) {
     if (chrome.runtime.lastError) {
       showError(chrome.runtime.lastError.message);
       return;
