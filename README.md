@@ -1,5 +1,5 @@
 ### Welcome to Material Markdown!
-This is a Markdown editor.
+This is a simple and clean markdown editor with side by side preview.
 
 **Shortcuts**
 - Load Sample Page: Ctrl+Shift+4
@@ -15,14 +15,6 @@ This is a Markdown editor.
 - Toggle Italic: Ctrl+I
 - Draw Link: Ctrl+K
 - Toggle Unordered List: Ctrl+L
------
-```
-var test = 'hello from material markdown'
-```
-[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)
-> This app uses the open source SimpleMDE markdown editor As
-  - Open Sample
-- Keyboard support
 
 **To Do's:**
 - Search
@@ -40,6 +32,11 @@ var test = 'hello from material markdown'
 	- Mac: Cmd+2
 - Save As File: Ctrl+Shift+Y
 	- Mac: Cmd+3
+- Toggle Blockquote: Ctrl+'
+- Toggle Bold: Ctrl+B
+- Toggle Italic: Ctrl+I
+- Draw Link: Ctrl+K
+- Toggle Unordered List: Ctrl+L
 - Toggle Blockquote: Ctrl+'
 - Toggle Bold: Ctrl+B
 - Toggle Italic: Ctrl+I
