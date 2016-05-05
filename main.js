@@ -1,4 +1,5 @@
 var initialMarkdown = "";
+var theValue;
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
@@ -20,7 +21,7 @@ function loadSample() {
 }
 
 function getSavedValue() {
-  chrome.storage.sync.get(function(values){simplemde.value(values.value);});
+  chrome.storage.local.get(function(values){simplemde.value(values.value);});
 }
 
 getSavedValue();
@@ -158,15 +159,15 @@ function activateToast() {
 }
 
 simplemde.codemirror.on("change", function(){
+  theValue = simplemde.value();
   saveChanges();
 });
 
 function saveChanges() {
-  var theValue = simplemde.value();
   // Save it using the Chrome extension storage API.
-  chrome.storage.sync.set({'value': theValue}, function() {
+  chrome.storage.local.set({'value': theValue}, function() {
     // Notify that we saved.
-    console.log('Editor saved');
+    // console.log('Editor saved');
   });
 }
       
