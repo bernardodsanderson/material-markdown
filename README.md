@@ -1,5 +1,7 @@
-### Welcome to Material Markdown!
+# Welcome to Material Markdown!
 This is a simple and clean markdown editor with side by side preview.
+
+![Screenshot](https://lh3.googleusercontent.com/bV6rFmBb9_-jiFztObWHyMg4Wijm8sgNqbIOMCqltWguhhsfnTUyvl2uYToe-1HxDYQFnEezFJQ=s1280-h800-e365-rw)
 
 **Shortcuts**
 - Load Sample Page: Ctrl+Shift+4
