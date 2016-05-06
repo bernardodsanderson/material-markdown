@@ -2,6 +2,24 @@ html, body {
   background-color: #263238;
 }
 
+.demo-content h1 {
+  font-size: 40px;
+}
+
+.demo-content h2 {
+  font-size: 35px;
+  line-height: 38px;
+}
+
+.demo-content h3 {
+  font-size: 25px;
+  line-height: 30px;
+}
+
+.CodeMirror .CodeMirror-code .cm-header {
+  color: #32969B;
+}
+
 .demo-content .editor-toolbar {
   width: 100%;
   border: none;
