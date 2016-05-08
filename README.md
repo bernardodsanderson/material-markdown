@@ -45,5 +45,7 @@ This is a simple and clean markdown editor with side by side preview.
 - Draw Link: Ctrl+K
 - Toggle Unordered List: Ctrl+L
 
+simplemde.options.previewRender("This is *example* Markdown");
+
 
 > This app uses the open source SimpleMDE markdown editor
