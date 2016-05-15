@@ -3,7 +3,7 @@
   "name": "Material Markdown",
   "short_name": "Material Markdown",
   "description": "A simple and clean Material Design markdown editor with side by side preview",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "minimum_chrome_version": "38",
 
   "icons": {
@@ -48,7 +48,8 @@
  "permissions": [
     "storage",
     "clipboardWrite",
-    {"fileSystem": ["write", "retainEntries", "directory"]}
+    {"fileSystem": ["write", "retainEntries", "directory"]},
+    "<all_urls>"
   ],
   
   "file_handlers": {

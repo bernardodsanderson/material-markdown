@@ -40,6 +40,9 @@ $('.mdl-menu li').on('click', function(){
     case $('#load_sample')[0]: // LOAD SAMPLE
         loadSample();
         break;
+    case $('#get_html')[0]: // DOWNLOAD HTML
+        saveAsHTML();
+        break;
     default:
         console.log('Nothing selected');
   }
@@ -135,6 +138,22 @@ function saveToEntry() {
     fileWriter.write(blob);
     activateToast();
   });
+}
+
+var exportHTML = false;
+
+function saveAsHTML() {
+  exportHTML = true;
+  var HTMLcontent = simplemde.options.previewRender(simplemde.value());
+  var config = {type: 'saveFile', suggestedName: 'my-file.html'};
+  chrome.fileSystem.chooseEntry(config, function(writableFileEntry) {
+    setEntry(writableFileEntry, true);
+    writableFileEntry.createWriter(function(writer) {
+      writer.write(new Blob([HTMLcontent], {type: 'text/plain'}));  
+      activateToast();
+    });
+  });
+  exportHTML = false;
 }
 
 // Commmands

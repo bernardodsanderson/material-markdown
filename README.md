@@ -20,7 +20,6 @@ This is a simple and clean markdown editor with side by side preview.
 
 **To Do's:**
 - Search
-- Autosaving
 - Custom colors
 - Recent files
 - More customization
@@ -44,8 +43,5 @@ This is a simple and clean markdown editor with side by side preview.
 - Toggle Italic: Ctrl+I
 - Draw Link: Ctrl+K
 - Toggle Unordered List: Ctrl+L
-
-simplemde.options.previewRender("This is *example* Markdown");
-
 
 > This app uses the open source SimpleMDE markdown editor

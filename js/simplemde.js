@@ -8387,8 +8387,13 @@
                         var o = '<a href="' + e + '" target="_blank"';
                         return t && (o += ' title="' + t + '"'), o += ">" + n + "</a>"
                     }, o.prototype.image = function(e, t, n) {
-                        var r = '<div alt="' + e + '" class="image"';
-                        return t && (r += ' title="' + t + '"'), r += "><i class='material-icons'>image</i></div>"
+                        if(exportHTML) {
+                          var r = '<img src="' + e + '" alt="' + n + '"';
+                          return t && (r += ' title="' + t + '"'), r += this.options.xhtml ? "/>" : ">"
+                        } else {
+                          var r = '<div alt="' + e + '" class="image"  title="' + n + '"';
+                          return t, r += "><i class='material-icons'>image</i></div>";
+                        }
                     }, o.prototype.text = function(e) {
                         return e
                     }, l.parse = function(e, t, n) {
