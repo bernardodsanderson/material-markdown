@@ -175,6 +175,12 @@ html, body {
   float: right;
 }
 
+ul li.mdl-menu__item i {
+  float: right;
+  font-size: 22px;
+  line-height: 48px;
+}
+
 
 /* Let's get this party started */
 ::-webkit-scrollbar { 
