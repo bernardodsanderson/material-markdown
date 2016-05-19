@@ -189,4 +189,13 @@ function saveChanges() {
     // console.log('Editor saved');
   });
 }
-      
+
+chrome.contextMenus.create({
+  id: "quick-menu",
+  title: "Save",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
+chrome.contextMenus.onClicked.addListener(saveFile.bind(this));
