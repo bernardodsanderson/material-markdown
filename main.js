@@ -26,6 +26,7 @@ function getSavedValue() {
 
 getSavedValue();
 
+// Hidden upper right menu
 $('.mdl-menu li').on('click', function(){
   switch($(this)[0]) {
     case $('#open_file')[0]: // OPEN FILE
@@ -190,12 +191,61 @@ function saveChanges() {
   });
 }
 
+// Context (right click) Menus
 chrome.contextMenus.create({
-  id: "quick-menu",
+  id: "open-file",
+  title: "Open File",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
+chrome.contextMenus.create({
+  id: "save-file",
   title: "Save",
   contexts: ["launcher", "all"]
 }, function(){
   console.log(chrome.runtime.lastError);
 });
 
-chrome.contextMenus.onClicked.addListener(saveFile.bind(this));
+chrome.contextMenus.create({
+  id: "save-as-file",
+  title: "Save As",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
+chrome.contextMenus.create({
+  id: "save-html",
+  title: "Get HTML",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
+chrome.contextMenus.create({
+  id: "load-sample",
+  title: "Load Sample Page",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
+chrome.contextMenus.onClicked.addListener(function(itemData) {
+  if (itemData.menuItemId == "save-file") {
+    saveFile();
+  }
+  if (itemData.menuItemId == "open-file") {
+    openFile();
+  }
+  if (itemData.menuItemId == "save-as-file") {
+    saveAsFile();
+  }
+  if (itemData.menuItemId == "load-sample") {
+    loadSample();
+  }
+  if (itemData.menuItemId == "save-html") {
+    saveAsHTML();
+  }
+});

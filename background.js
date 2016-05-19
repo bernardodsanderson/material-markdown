@@ -6,7 +6,7 @@
  */
 chrome.app.runtime.onLaunched.addListener(function(launchData) {
   chrome.app.window.create(
-    'index.html', {
+    'main.html', {
       id: 'mainWindow',
       frame: { color: "#1F292E" },
       bounds: {width: 1000, height: 700},
