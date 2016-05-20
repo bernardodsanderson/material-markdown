@@ -199,8 +199,8 @@ function saveChanges() {
 }
 
 // Search
-var searchInput, searchLength, sanityCheck;
-$('input.mdl-textfield__input').on('keyup', function(){
+var searchInput, searchLength, sanityCheck, positionArray;
+$('input.mdl-textfield__input').on('keyup', function() {
   var searchPosition = 0;
   if($(this).val() != "") { // check to make sure search is not empty
     changedValue = originalValue.toLowerCase();
@@ -211,13 +211,20 @@ $('input.mdl-textfield__input').on('keyup', function(){
 
 function searchInputFun(searchPosition, changedValue, searchInput) {
   // simplemde.value(originalValue); // overwrite before every new search
+  positionArray = [];
   sanityCheck = 1;
+  searchLength = searchInput.length;
   while (searchPosition >= -1 && sanityCheck <= 10) {
     searchPosition = changedValue.indexOf(searchInput, searchPosition);
-    searchLength = searchInput.length;
-    console.log(originalValue.substring(searchPosition, searchPosition + searchLength));
-    searchPosition = searchPosition+1;
+    positionArray.push(searchPosition);
+    searchPosition += 1;
     sanityCheck += 1;
+  }
+  
+  for (var i = 0; i < positionArray.length; i++) {
+    if (positionArray[i] != -1) {
+      console.log(originalValue.substring(positionArray[i], positionArray[i] + searchLength));
+    }
   }
   // simplemde.value(match.result);
 }
