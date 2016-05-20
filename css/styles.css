@@ -181,6 +181,34 @@ ul li.mdl-menu__item i {
   line-height: 48px;
 }
 
+.demo-content .mdl-textfield--expandable {
+  color: white;
+}
+
+.demo-content .mdl-textfield__expandable-holder {
+  margin-bottom: 10px;
+}
+
+.demo-content .mdl-textfield {
+  padding: 7px 0;
+}
+
+.demo-content .mdl-textfield .mdl-button {
+  position: absolute;
+  bottom: 20px;
+}
+
+.demo-content .mdl-textfield__label:after {
+  background-color: #FFCC03;
+}
+
+.demo-content .mdl-textfield__input {
+  /*padding-bottom: 10px;*/
+}
+
+span.highlight-search {
+  background-color: #FFCC03;
+}
 
 /* Let's get this party started */
 ::-webkit-scrollbar { 
