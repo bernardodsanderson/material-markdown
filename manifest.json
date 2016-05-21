@@ -49,6 +49,8 @@
     "storage",
     "clipboardWrite",
     "contextMenus",
+    "webview",
+    "system.network",
     {"fileSystem": ["write", "retainEntries", "directory"]},
     "<all_urls>"
   ],

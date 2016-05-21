@@ -1,5 +1,6 @@
 var initialMarkdown = "";
 var theValue;
+var badConnection = false;
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
@@ -247,5 +248,14 @@ chrome.contextMenus.onClicked.addListener(function(itemData) {
   }
   if (itemData.menuItemId == "save-html") {
     saveAsHTML();
+  }
+});
+
+// Check for connectivity
+chrome.system.network.getNetworkInterfaces(function(e){
+  if(e.length == 0) {
+    badConnection = true;
+  } else {
+    badConnection = false;
   }
 });

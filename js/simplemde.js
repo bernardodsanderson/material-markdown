@@ -8390,9 +8390,11 @@
                         if(exportHTML) {
                           var r = '<img src="' + e + '" alt="' + n + '"';
                           return t && (r += ' title="' + t + '"'), r += this.options.xhtml ? "/>" : ">"
-                        } else {
+                        } else if(badConnection) {
                           var r = '<div alt="' + e + '" class="image"  title="' + n + '"';
                           return t, r += "><i class='material-icons'>image</i></div>";
+                        } else {
+                          return '<webview id="' + n + '" src="' + e + '" style="width:67vh; height:45vh" autosize="on"></webview>';
                         }
                     }, o.prototype.text = function(e) {
                         return e
