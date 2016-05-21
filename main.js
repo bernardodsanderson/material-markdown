@@ -1,7 +1,5 @@
 var initialMarkdown = "";
 var theValue;
-var originalValue;
-var originalValueArray;
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
@@ -16,8 +14,6 @@ simplemde.toggleSideBySide();
 
 // Menu
 $('<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button--icon"><i class="material-icons" style="color: white;">more_vert</i></button>').appendTo('.editor-toolbar');
-// Search
-$('<div style="float:right;"><div class="mdl-textfield mdl-js-textfield mdl-textfield--expandable"><label class="mdl-button mdl-js-button mdl-button--icon" for="search-input"><i class="material-icons">search</i></label><div class="mdl-textfield__expandable-holder"><input class="mdl-textfield__input" type="text" id="search-input"><label class="mdl-textfield__label" for="search-input">Expandable Input</label></div></div></div>').appendTo('.editor-toolbar');
 
 // Load Sample
 function loadSample() {
@@ -183,11 +179,8 @@ function activateToast() {
 }
 
 simplemde.codemirror.on("change", function(){
-  if($('input.mdl-textfield__input').val() == "") {
-    originalValue = simplemde.value();
-    theValue = simplemde.value();
-    saveChanges();
-  }
+  theValue = simplemde.value();
+  saveChanges();
 });
 
 function saveChanges() {
@@ -196,37 +189,6 @@ function saveChanges() {
     // Notify that we saved.
     // console.log('Editor saved');
   });
-}
-
-// Search
-var searchInput, searchLength, sanityCheck, positionArray;
-$('input.mdl-textfield__input').on('keyup', function() {
-  var searchPosition = 0;
-  if($(this).val() != "") { // check to make sure search is not empty
-    changedValue = originalValue.toLowerCase();
-    searchInput = $(this).val().toLowerCase();
-    searchInputFun(searchPosition, changedValue, searchInput);
-  }
-}); 
-
-function searchInputFun(searchPosition, changedValue, searchInput) {
-  // simplemde.value(originalValue); // overwrite before every new search
-  positionArray = [];
-  sanityCheck = 1;
-  searchLength = searchInput.length;
-  while (searchPosition >= -1 && sanityCheck <= 10) {
-    searchPosition = changedValue.indexOf(searchInput, searchPosition);
-    positionArray.push(searchPosition);
-    searchPosition += 1;
-    sanityCheck += 1;
-  }
-  
-  for (var i = 0; i < positionArray.length; i++) {
-    if (positionArray[i] != -1) {
-      console.log(originalValue.substring(positionArray[i], positionArray[i] + searchLength));
-    }
-  }
-  // simplemde.value(match.result);
 }
 
 // Context (right click) Menus
