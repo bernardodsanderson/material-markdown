@@ -18,12 +18,6 @@ This is a simple and clean markdown editor with side by side preview.
 - Draw Link: Ctrl+K
 - Toggle Unordered List: Ctrl+L
 
-**To Do's:**
-- Search
-- Custom colors
-- Recent files
-- More customization
-
 **Shortcuts**
 - Load Sample Page: Ctrl+M
  - Mac: Cmd+4
