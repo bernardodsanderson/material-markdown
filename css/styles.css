@@ -20,6 +20,18 @@ html, body {
   color: #32969B;
 }
 
+.CodeMirror .CodeMirror-code .cm-tag {
+  color: #8aa76d;
+}
+
+.CodeMirror .CodeMirror-code .cm-attribute {
+  color: #9a4355;
+}
+
+.CodeMirror .CodeMirror-code .cm-string {
+  color: #609593;
+}
+
 .demo-content .editor-toolbar {
   width: 100%;
   border: none;
