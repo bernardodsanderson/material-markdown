@@ -8387,7 +8387,7 @@
                         var o = '<a href="' + e + '" target="_blank"';
                         return t && (o += ' title="' + t + '"'), o += ">" + n + "</a>"
                     }, o.prototype.image = function(e, t, n) {
-                        if(exportHTML) {
+                        if(exportHTML || localImage) {
                           var r = '<img src="' + e + '" alt="' + n + '"';
                           return t && (r += ' title="' + t + '"'), r += this.options.xhtml ? "/>" : ">"
                         } else if(badConnection) {
@@ -8770,7 +8770,12 @@
                 var t = e.codemirror,
                     n = a(t),
                     r = e.options,
-                    i = "http://";
+                    i;
+                    if(localImage) {
+                      i = localURL;
+                    } else {
+                      i = "http://";
+                    }
                 return r.promptURLs && (i = prompt(r.promptTexts.image), !i) ? !1 : void O(t, n.image, r.insertTexts.image, i)
             }
 

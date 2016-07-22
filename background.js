@@ -12,6 +12,7 @@ chrome.app.runtime.onLaunched.addListener(function(launchData) {
       bounds: {width: 1000, height: 700},
       minHeight: 700,
       minWidth: 1000
-    }
-  );
+    }, function(win) {
+    win.contentWindow.launchData = launchData;
+  });
 });

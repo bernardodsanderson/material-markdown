@@ -222,6 +222,10 @@ span.highlight-search {
   background-color: #FFCC03;
 }
 
+.mdl-dialog {
+  border-radius: 2px;
+}
+
 /* Let's get this party started */
 ::-webkit-scrollbar { 
   width: 8px;

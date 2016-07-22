@@ -1,11 +1,19 @@
 var initialMarkdown = "";
 var theValue;
 var badConnection = false;
+var localImage = false;
+var localURL;
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
   spellChecker: false,
-  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link", "image", "horizontal-rule", "|", "side-by-side"],
+  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link", "image",
+    {
+      name: "local",
+      action: console.log('local image'),
+      className: "fa fa-file-image-o",
+      title: "Local Image"
+    }, "horizontal-rule", "|", "side-by-side"],
   initialValue: initialMarkdown,
   status: false
 });
@@ -51,24 +59,6 @@ $('.mdl-menu li').on('click', function(){
 });
 
 var chosenFileEntry = null;
-
-// File functions
-// function openFile(){
-//   var accepts = [{
-//     mimeTypes: ['markdown/*'],
-//     extensions: ['md', 'txt']
-//   }];
-//   chrome.fileSystem.chooseEntry({type: 'openFile', accepts: accepts}, function(readOnlyEntry) {
-//     setEntry(readOnlyEntry, false);
-//     readOnlyEntry.file(function(file) {
-//       var reader = new FileReader();
-//       reader.onloadend = function(e) {
-//         simplemde.value(e.target.result);
-//       };
-//       reader.readAsText(file);
-//     });
-//   });
-// }
 
 function openFile() {
   var accepts = [{
@@ -157,6 +147,32 @@ function saveAsHTML() {
   });
   exportHTML = false;
 }
+
+// Get initial data
+// function loadInitialFile(launchData) {
+//   if (launchData && launchData.items && launchData.items[0]) {
+//     loadFileEntry(launchData.items[0].entry);
+//   } 
+//   else {
+//     // see if the app retained access to an earlier file or directory
+//     chrome.storage.local.get('chosenFile', function(items) {
+//       if (items.chosenFile) {
+//         // if an entry was retained earlier, see if it can be restored
+//         chrome.fileSystem.isRestorable(items.chosenFile, function(bIsRestorable) {
+//           // the entry is still there, load the content
+//           console.info("Restoring " + items.chosenFile);
+//           chrome.fileSystem.restoreEntry(items.chosenFile, function(chosenEntry) {
+//             if (chosenEntry) {
+//               chosenEntry.isFile ? loadFileEntry(chosenEntry) : loadDirEntry(chosenEntry);
+//             }
+//           });
+//         });
+//       }
+//     });
+//   }
+// }
+
+// loadInitialFile(launchData);
 
 // Commmands
 chrome.commands.onCommand.addListener(function(command) {
@@ -250,6 +266,35 @@ chrome.contextMenus.onClicked.addListener(function(itemData) {
     saveAsHTML();
   }
 });
+
+// Local Image
+$('a.fa.fa-file-image-o').on('click', function(){
+  localImage = true;
+  openDirectoryImage();
+});
+
+function openDirectoryImage(){
+  // Within your app's code, somehow get a DirectoryEntry (or FileEntry):
+  chrome.fileSystem.chooseEntry({}, function(fileEntry) {
+    fileEntry.file(function(file) {
+      var url = URL.createObjectURL(file);
+      // url looks like "blob:chrome-extension%3A//[extensionid]/[uuid]"
+      localURL = url;
+      simplemde.drawImage();
+      localImage = false;
+    });
+  });
+}
+
+// Online Image
+// var xhr = new XMLHttpRequest();
+// xhr.open('GET', 'https://gitlab.com/bernardodsanderson/material-neutral-theme/raw/master/screenshot.png', true);
+// xhr.responseType = 'blob';
+// xhr.onload = function(e) {
+//   console.log(window.URL.createObjectURL(this.response));
+// };
+
+// xhr.send();
 
 // Check for connectivity
 chrome.system.network.getNetworkInterfaces(function(e){
