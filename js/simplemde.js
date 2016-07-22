@@ -8387,7 +8387,7 @@
                         var o = '<a href="' + e + '" target="_blank"';
                         return t && (o += ' title="' + t + '"'), o += ">" + n + "</a>"
                     }, o.prototype.image = function(e, t, n) {
-                        if(e.startsWith('blob')) {
+                        if(exportHTML || e.startsWith('blob')) {
                           var r = '<img src="' + e + '" alt="' + n + '"';
                           return t && (r += ' title="' + t + '"'), r += this.options.xhtml ? "/>" : ">";
                         } else {
