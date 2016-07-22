@@ -2,6 +2,10 @@ html, body {
   background-color: #263238;
 }
 
+.editor-preview-side img {
+  max-width: 100% !important;
+}
+
 .demo-content h1 {
   font-size: 40px;
 }
@@ -216,6 +220,11 @@ ul li.mdl-menu__item i {
 
 .demo-content .mdl-textfield__input {
   /*padding-bottom: 10px;*/
+  outline: none;
+}
+
+button.mdl-button--colored {
+  background-color: #558382 !important;
 }
 
 span.highlight-search {

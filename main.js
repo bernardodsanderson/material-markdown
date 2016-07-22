@@ -2,13 +2,20 @@ var initialMarkdown = "";
 var theValue;
 var badConnection = false;
 var localImage = false;
+var onlineImage = false;
 var localURL;
+var onlineURL;
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
   spellChecker: false,
-  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link", "image",
+  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link",
     {
+      name: "image",
+      action: console.log('online image'),
+      className: "fa fa-picture-o",
+      title: "Online Image"
+    },{
       name: "local",
       action: console.log('local image'),
       className: "fa fa-file-image-o",
@@ -287,20 +294,31 @@ function openDirectoryImage(){
 }
 
 // Online Image
-// var xhr = new XMLHttpRequest();
-// xhr.open('GET', 'https://gitlab.com/bernardodsanderson/material-neutral-theme/raw/master/screenshot.png', true);
-// xhr.responseType = 'blob';
-// xhr.onload = function(e) {
-//   console.log(window.URL.createObjectURL(this.response));
-// };
+var dialog = document.querySelector('dialog');
 
-// xhr.send();
-
-// Check for connectivity
-chrome.system.network.getNetworkInterfaces(function(e){
-  if(e.length == 0) {
-    badConnection = true;
-  } else {
-    badConnection = false;
-  }
+$('a.fa.fa-picture-o').on('click', function(){
+  dialog.showModal();
 });
+
+dialog.querySelector('button.button-submit').addEventListener('click', function() {
+  onlineImage = true;
+  getOnlineBlob($('#online-image-url').val());
+  dialog.close();
+});
+
+dialog.querySelector('button.close').addEventListener('click', function() {
+  dialog.close();
+});
+
+function getOnlineBlob(url) {
+  var xhr = new XMLHttpRequest();
+  xhr.open('GET', url, true);
+  xhr.responseType = 'blob';
+  xhr.onload = function(e) {
+    onlineURL = window.URL.createObjectURL(this.response);
+    simplemde.drawImage();
+    onlineImage = false;
+  };
+  
+  xhr.send();
+}
