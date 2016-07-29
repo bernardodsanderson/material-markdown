@@ -2,6 +2,10 @@ html, body {
   background-color: #263238;
 }
 
+::shadow img {
+  width: 100% !important;
+}
+
 .editor-preview-side img {
   max-width: 100% !important;
 }

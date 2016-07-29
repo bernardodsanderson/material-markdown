@@ -36,11 +36,11 @@ function loadSample() {
   simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+Shift+4\n - Mac: Cmd+4\n- Open File: Ctrl+Shift+5\n	- Mac: Cmd+5\n- Save File: Ctrl+Shift+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+Shift+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
 }
 
-function getSavedValue() {
-  chrome.storage.local.get(function(values){simplemde.value(values.value);});
-}
+// function getSavedValue() {
+//   chrome.storage.local.get(function(values){simplemde.value(values.value);});
+// }
 
-getSavedValue();
+// getSavedValue();
 
 // Hidden upper right menu
 $('.mdl-menu li').on('click', function(){
@@ -78,7 +78,9 @@ function openFile() {
       return;
     }
     setEntry(entry, false);
+    // chrome.fileSystem.retainEntry(entry);
     replaceDocContentsFromFileEntry();
+    chrome.storage.local.set({'chosenFile': chrome.fileSystem.retainEntry(entry)});
   });
 }
 
@@ -98,6 +100,7 @@ function saveAsFile() {
   var config = {type: 'saveFile', suggestedName: 'my-file.md'};
   chrome.fileSystem.chooseEntry(config, function(writableFileEntry) {
     setEntry(writableFileEntry, true);
+    chrome.storage.local.set({'chosenFile': chrome.fileSystem.retainEntry(writableFileEntry)});
     writableFileEntry.createWriter(function(writer) {
       writer.write(new Blob([simplemde.value()], {type: 'text/plain'}));  
       activateToast();
@@ -131,12 +134,69 @@ function saveFile() {
   }
 }
 
-function saveToEntry() {
-  fileEntry.createWriter(function(fileWriter) {
-    var blob = new Blob([simplemde.value()], {type: 'text/plain'});
-    fileWriter.write(blob);
-    activateToast();
+function loadFileEntry(_chosenEntry) {
+  chosenEntry = _chosenEntry;
+  chosenEntry.file(function(file) {
+    readAsText(chosenEntry, function(result) {
+      simplemde.value(result);
+    });
   });
+}
+
+function readAsText(fileEntry, callback) {
+  fileEntry.file(function(file) {
+    var reader = new FileReader();
+
+    // reader.onerror = errorHandler;
+    reader.onload = function(e) {
+      callback(e.target.result);
+    };
+
+    reader.readAsText(file);
+  });
+}
+
+function loadInitialFile(launchData) {
+  if (launchData && launchData.items && launchData.items[0]) {
+    loadFileEntry(launchData.items[0].entry);
+  } else {
+    // see if the app retained access to an earlier file or directory
+    chrome.storage.local.get('chosenFile', function(items) {
+      if (items.chosenFile) {
+        gotWritable = true;
+        // if an entry was retained earlier, see if it can be restored
+        chrome.fileSystem.isRestorable(items.chosenFile, function(bIsRestorable) {
+          // the entry is still there, load the content
+          console.info("Restoring " + items.chosenFile);
+          chrome.fileSystem.restoreEntry(items.chosenFile, function(chosenEntry) {
+            if (chosenEntry) {
+              loadFileEntry(chosenEntry);
+            }
+          });
+        });
+      } else {
+        gotWritable = false;
+      }
+    });
+  }
+}
+
+loadInitialFile(launchData);
+
+function saveToEntry() {
+  if(gotWritable) {
+    chosenEntry.createWriter(function(fileWriter) {
+      var blob = new Blob([simplemde.value()], {type: 'text/plain'});
+      fileWriter.write(blob);
+      activateToast();
+    });
+  } else {
+    fileEntry.createWriter(function(fileWriter) {
+      var blob = new Blob([simplemde.value()], {type: 'text/plain'});
+      fileWriter.write(blob);
+      activateToast();
+    });
+  }
 }
 
 var exportHTML = false;
@@ -154,32 +214,6 @@ function saveAsHTML() {
   });
   exportHTML = false;
 }
-
-// Get initial data
-// function loadInitialFile(launchData) {
-//   if (launchData && launchData.items && launchData.items[0]) {
-//     loadFileEntry(launchData.items[0].entry);
-//   } 
-//   else {
-//     // see if the app retained access to an earlier file or directory
-//     chrome.storage.local.get('chosenFile', function(items) {
-//       if (items.chosenFile) {
-//         // if an entry was retained earlier, see if it can be restored
-//         chrome.fileSystem.isRestorable(items.chosenFile, function(bIsRestorable) {
-//           // the entry is still there, load the content
-//           console.info("Restoring " + items.chosenFile);
-//           chrome.fileSystem.restoreEntry(items.chosenFile, function(chosenEntry) {
-//             if (chosenEntry) {
-//               chosenEntry.isFile ? loadFileEntry(chosenEntry) : loadDirEntry(chosenEntry);
-//             }
-//           });
-//         });
-//       }
-//     });
-//   }
-// }
-
-// loadInitialFile(launchData);
 
 // Commmands
 chrome.commands.onCommand.addListener(function(command) {
