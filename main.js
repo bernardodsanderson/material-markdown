@@ -9,7 +9,7 @@ var onlineURL;
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
   spellChecker: false,
-  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "|", "code", "link",
+  toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "heading-smaller", "heading-bigger", "|", "code", "link",
     {
       name: "image",
       action: console.log('online image'),
@@ -36,11 +36,6 @@ function loadSample() {
   simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+Shift+4\n - Mac: Cmd+4\n- Open File: Ctrl+Shift+5\n	- Mac: Cmd+5\n- Save File: Ctrl+Shift+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+Shift+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
 }
 
-// function getSavedValue() {
-//   chrome.storage.local.get(function(values){simplemde.value(values.value);});
-// }
-
-// getSavedValue();
 
 // Hidden upper right menu
 $('.mdl-menu li').on('click', function(){
@@ -108,7 +103,7 @@ function saveAsFile() {
   });
 }
 
-// From Code Editor sample
+// File Entry functions
 var fileEntry;
 var gotWritable = false;
 
