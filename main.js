@@ -33,7 +33,7 @@ $('<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button
 
 // Load Sample
 function loadSample() {
-  simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+Shift+4\n - Mac: Cmd+4\n- Open File: Ctrl+Shift+5\n	- Mac: Cmd+5\n- Save File: Ctrl+Shift+2\n	- Mac: Cmd+2\n- Save As File: Ctrl+Shift+3\n	- Mac: Cmd+3\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
+  simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+P\n- Open File: Ctrl+O\n- Save File: Ctrl+S\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
 }
 
 
@@ -211,17 +211,30 @@ function saveAsHTML() {
 }
 
 // Commmands
-chrome.commands.onCommand.addListener(function(command) {
-  if (command == 'toggle-open-file') {
-    openFile();
-  } else if(command == 'toggle-save-file') {
+// chrome.commands.onCommand.addListener(function(command) {
+//   console.log("Command triggered: " + command);
+//   if (command == 'toggleOpenFile') {
+//     openFile();
+//   } else if(command == 'toggleSaveFfile') {
+//     saveFile();
+//   } else if(command == 'toggleSaveAsFile') {
+//     saveAsFile();
+//   } else if(command == 'toggleOpenSample') {
+//     loadSample();
+//   }
+// });
+
+// Keyboard commands
+document.addEventListener('keydown', function(event) {
+  console.log(event.keyCode, "keycode");
+  if(event.ctrlKey && event.keyCode == 83) {
     saveFile();
-  } else if(command == 'toggle-save-as-file') {
-    saveAsFile();
-  } else if(command == 'toggle-open-sample') {
+  } else if (event.ctrlKey && event.keyCode == 79) {
+    openFile();
+  } else if (event.ctrlKey && event.keyCode == 80) {
     loadSample();
   }
-});
+}, true);
 
 // Toast functionality
 var snackbarContainer = document.querySelector('#demo-toast-example');

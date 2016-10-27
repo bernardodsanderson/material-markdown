@@ -5506,9 +5506,6 @@
                     "Alt-Right": "goLineEnd",
                     "Ctrl-Backspace": "delGroupBefore",
                     "Ctrl-Delete": "delGroupAfter",
-                    "Ctrl-S": "save",
-                    "Ctrl-F": "find",
-                    "Ctrl-G": "findNext",
                     "Shift-Ctrl-G": "findPrev",
                     "Shift-Ctrl-F": "replace",
                     "Shift-Ctrl-R": "replaceAll",
@@ -5518,55 +5515,6 @@
                     "Shift-Ctrl-U": "redoSelection",
                     "Alt-U": "redoSelection",
                     fallthrough: "basic"
-                }, ul.emacsy = {
-                    "Ctrl-F": "goCharRight",
-                    "Ctrl-B": "goCharLeft",
-                    "Ctrl-P": "goLineUp",
-                    "Ctrl-N": "goLineDown",
-                    "Alt-F": "goWordRight",
-                    "Alt-B": "goWordLeft",
-                    "Ctrl-A": "goLineStart",
-                    "Ctrl-E": "goLineEnd",
-                    "Ctrl-V": "goPageDown",
-                    "Shift-Ctrl-V": "goPageUp",
-                    "Ctrl-D": "delCharAfter",
-                    "Ctrl-H": "delCharBefore",
-                    "Alt-D": "delWordAfter",
-                    "Alt-Backspace": "delWordBefore",
-                    "Ctrl-K": "killLine",
-                    "Ctrl-T": "transposeChars"
-                }, ul.macDefault = {
-                    "Cmd-A": "selectAll",
-                    "Cmd-D": "deleteLine",
-                    "Cmd-Z": "undo",
-                    "Shift-Cmd-Z": "redo",
-                    "Cmd-Y": "redo",
-                    "Cmd-Home": "goDocStart",
-                    "Cmd-Up": "goDocStart",
-                    "Cmd-End": "goDocEnd",
-                    "Cmd-Down": "goDocEnd",
-                    "Alt-Left": "goGroupLeft",
-                    "Alt-Right": "goGroupRight",
-                    "Cmd-Left": "goLineLeft",
-                    "Cmd-Right": "goLineRight",
-                    "Alt-Backspace": "delGroupBefore",
-                    "Ctrl-Alt-Backspace": "delGroupAfter",
-                    "Alt-Delete": "delGroupAfter",
-                    "Cmd-S": "save",
-                    "Cmd-F": "find",
-                    "Cmd-G": "findNext",
-                    "Shift-Cmd-G": "findPrev",
-                    "Cmd-Alt-F": "replace",
-                    "Shift-Cmd-Alt-F": "replaceAll",
-                    "Cmd-[": "indentLess",
-                    "Cmd-]": "indentMore",
-                    "Cmd-Backspace": "delWrappedLineLeft",
-                    "Cmd-Delete": "delWrappedLineRight",
-                    "Cmd-U": "undoSelection",
-                    "Shift-Cmd-U": "redoSelection",
-                    "Ctrl-Up": "goDocStart",
-                    "Ctrl-Down": "goDocEnd",
-                    fallthrough: ["basic", "emacsy"]
                 }, ul["default"] = Oo ? ul.macDefault : ul.pcDefault, e.normalizeKeyMap = function(e) {
                     var t = {};
                     for (var n in e)
@@ -8902,6 +8850,7 @@
                         c = r,
                         u = o.getCursor("start"),
                         d = o.getCursor("end");
+                        console.log(u,d);
                     l[t] ? (i = o.getLine(u.line), s = i.slice(0, u.ch), c = i.slice(u.ch), "bold" == t ? (s = s.replace(/(\*\*|__)(?![\s\S]*(\*\*|__))/, ""), c = c.replace(/(\*\*|__)/, "")) : "italic" == t ? (s = s.replace(/(\*|_)(?![\s\S]*(\*|_))/, ""), c = c.replace(/(\*|_)/, "")) : "strikethrough" == t && (s = s.replace(/(\*\*|~~)(?![\s\S]*(\*\*|~~))/, ""), c = c.replace(/(\*\*|~~)/, "")), o.replaceRange(s + c, {
                         line: u.line,
                         ch: 0
@@ -8988,7 +8937,6 @@
                     toggleOrderedList: b,
                     toggleUnorderedList: x,
                     toggleCodeBlock: h,
-                    togglePreview: A,
                     toggleStrikethrough: d,
                     toggleHeading1: g,
                     toggleHeading2: v,
@@ -8999,7 +8947,6 @@
                     undo: T,
                     redo: M,
                     toggleSideBySide: N,
-                    toggleFullScreen: s
                 },
                 U = {
                     toggleBold: "Cmd-B",
@@ -9013,9 +8960,7 @@
                     toggleOrderedList: "Cmd-Alt-L",
                     toggleUnorderedList: "Cmd-L",
                     toggleCodeBlock: "Cmd-Alt-C",
-                    togglePreview: "Cmd-P",
                     toggleSideBySide: "F9",
-                    toggleFullScreen: "F11"
                 },
                 G = function(e) {
                     for (var t in q)
