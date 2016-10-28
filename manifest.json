@@ -3,7 +3,7 @@
   "name": "Material Markdown",
   "short_name": "Material Markdown",
   "description": "A simple and clean Material Design markdown editor with side by side preview",
-  "version": "1.3.3",
+  "version": "1.3.4",
   "minimum_chrome_version": "41",
 
   "icons": {
@@ -13,37 +13,6 @@
   },
   
   "offline_enabled": true,
-  
-  "commands": {
-    "toggleOpenFile": {
-      "suggested_key": {
-        "default": "Ctrl+F"
-      },
-      "global": true,
-      "description": "Open File"
-    },
-    "toggleSaveFile": {
-      "suggested_key": {
-        "default": "Ctrl+S"
-      },
-      "global": true,
-      "description": "Save File"
-    },
-    "toggleSaveAsFile": {
-      "suggested_key": {
-        "default": "Ctrl+Shift+S"
-      },
-      "global": true,
-      "description": "Save As File"
-    },
-    "toggleOpenSample": {
-      "suggested_key": {
-        "default": "Ctrl+P"
-      },
-      "global": true,
-      "description": "Open Sample Page"
-    }
-  },
   
  "permissions": [
     "storage",

@@ -5,6 +5,7 @@ var localImage = false;
 var onlineImage = false;
 var localURL;
 var onlineURL;
+var sampleText = "### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+P\n- Open File: Ctrl+O\n- Save File: Ctrl+S\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor";
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
@@ -33,8 +34,16 @@ $('<button id="demo-menu-lower-right" class="mdl-button mdl-js-button mdl-button
 
 // Load Sample
 function loadSample() {
-  simplemde.value("### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+P\n- Open File: Ctrl+O\n- Save File: Ctrl+S\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor");
+  simplemde.value(sampleText);
 }
+
+// Load Backup
+function loadBackup() {
+  chrome.storage.local.get('value', function(items) {
+     simplemde.value(items.value);
+   });
+}
+
 
 
 // Hidden upper right menu
@@ -54,6 +63,9 @@ $('.mdl-menu li').on('click', function(){
         break;
     case $('#get_html')[0]: // DOWNLOAD HTML
         saveAsHTML();
+        break;
+    case $('#restore')[0]: // DOWNLOAD HTML
+        loadBackup();
         break;
     default:
         console.log('Nothing selected');
@@ -210,23 +222,8 @@ function saveAsHTML() {
   exportHTML = false;
 }
 
-// Commmands
-// chrome.commands.onCommand.addListener(function(command) {
-//   console.log("Command triggered: " + command);
-//   if (command == 'toggleOpenFile') {
-//     openFile();
-//   } else if(command == 'toggleSaveFfile') {
-//     saveFile();
-//   } else if(command == 'toggleSaveAsFile') {
-//     saveAsFile();
-//   } else if(command == 'toggleOpenSample') {
-//     loadSample();
-//   }
-// });
-
 // Keyboard commands
 document.addEventListener('keydown', function(event) {
-  console.log(event.keyCode, "keycode");
   if(event.ctrlKey && event.keyCode == 83) {
     saveFile();
   } else if (event.ctrlKey && event.keyCode == 79) {
@@ -244,6 +241,7 @@ function activateToast() {
   snackbarContainer.MaterialSnackbar.showSnackbar(data);
 }
 
+// Auto save
 simplemde.codemirror.on("change", function(){
   theValue = simplemde.value();
   saveChanges();
@@ -298,6 +296,14 @@ chrome.contextMenus.create({
   console.log(chrome.runtime.lastError);
 });
 
+chrome.contextMenus.create({
+  id: "restore",
+  title: "Restore Backup",
+  contexts: ["launcher", "all"]
+}, function(){
+  console.log(chrome.runtime.lastError);
+});
+
 chrome.contextMenus.onClicked.addListener(function(itemData) {
   if (itemData.menuItemId == "save-file") {
     saveFile();
@@ -313,6 +319,9 @@ chrome.contextMenus.onClicked.addListener(function(itemData) {
   }
   if (itemData.menuItemId == "save-html") {
     saveAsHTML();
+  }
+  if (itemData.menuItemId == "restore") {
+    loadBackup();
   }
 });
 
