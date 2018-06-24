@@ -5,12 +5,12 @@ var localImage = false;
 var onlineImage = false;
 var localURL;
 var onlineURL;
+var spellcheck = true;
 var sampleText = "### Welcome to Material Markdown!\n**Shortcuts**\n- Load Sample Page: Ctrl+P\n- Open File: Ctrl+O\n- Save File: Ctrl+S\n- Toggle Blockquote: Ctrl+'\n- Toggle Bold: Ctrl+B\n- Toggle Italic: Ctrl+I\n- Draw Link: Ctrl+K\n- Toggle Unordered List: Ctrl+L\n-----\n```\nvar test = 'hello from material markdown'\n```\n[Gitlab Repository](https://gitlab.com/bernardodsanderson/material-markdown)\n> This app uses the open source SimpleMDE markdown editor";
-
 
 var simplemde = new SimpleMDE({ 
   element: document.getElementById("my-content"),
-  spellChecker: false,
+  spellChecker: spellcheck,
   toolbar: ["bold", "italic", "strikethrough", "|", "quote", "unordered-list", "ordered-list", "clean-block", "table", "|", "heading-1", "heading-2", "heading-3", "heading-smaller", "heading-bigger", "|", "code", "link",
     {
       name: "image",
@@ -68,10 +68,18 @@ $('.mdl-menu li').on('click', function(){
     case $('#restore')[0]: // DOWNLOAD HTML
         loadBackup();
         break;
+    case $('#spellcheck')[0]: // TOGGLE SPELLCHECK
+        toggleSpellcheck();
+        break;
     default:
         console.log('Nothing selected');
   }
 });
+
+// Spellcheck
+function toggleSpellcheck() {
+  spellcheck = !spellcheck;
+}
 
 var chosenFileEntry = null;
 
